@@ -236,6 +236,7 @@ def run_example() -> Dict[str, np.ndarray]:
 # %% MAIN
 
 if __name__ == "__main__":
+    print("Example run started...")
     results = run_example()
     print(results)
-    print("Example run completed")
+    print("Example run completed!")
