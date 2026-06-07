@@ -1,19 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
-import numpy as np
-import yfinance as yf
+import numpy        as np
+import yfinance     as yf
 from scipy.optimize import minimize
-from typing import Tuple, Dict
+from typing         import Tuple, Dict
 
 
 # %% SYNTHETIC DATA
-
-
 def generate_synthetic_prices(
-    n_assets: int = 5, 
-    n_days: int = 1500, 
-    seed: int = 42
+    n_assets: int = 5, n_days: int = 1500, seed: int = 42
 ) -> np.ndarray:
     """
     Generate synthetic price series using geometric Brownian motion.
@@ -30,7 +25,6 @@ def generate_synthetic_prices(
         prices[t] = prices[t - 1] * np.exp(
             (mu - 0.5 * sigma**2) * dt + sigma * np.sqrt(dt) * shock
         )
-
     return prices
 
 
@@ -38,7 +32,7 @@ def generate_synthetic_prices(
 
 
 def download_prices(
-    symbols: list[str], 
+    symbols: list[str],
     start: str = "2018-01-01",
     testing: bool = False
 ) -> np.ndarray:
@@ -124,23 +118,17 @@ def portfolio_sharpe(
 
 
 # %% WEIGHT UTILITIES
-
-
 def random_weights(n_assets: int) -> np.ndarray:
     w = np.random.random(n_assets)
     w /= w.sum()
     return w
-
 
 def generate_random_portfolios(n_sim: int, n_assets: int) -> np.ndarray:
     weights = np.random.random((n_sim, n_assets))
     weights /= weights.sum(axis=1)[:, None]
     return weights
 
-
 # %% MONTE CARLO
-
-
 def monte_carlo_portfolios(
     weights: np.ndarray, mean_ret: np.ndarray, cov_matrix: np.ndarray
 ) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
@@ -150,10 +138,7 @@ def monte_carlo_portfolios(
     sharpe = returns / vol
     return returns, vol, sharpe
 
-
 # %% OPTIMIZATION
-
-
 def maximize_sharpe(
     mean_ret: np.ndarray, cov_matrix: np.ndarray
 ) -> np.ndarray:
@@ -199,8 +184,6 @@ def minimum_variance_portfolio(
 
 
 # %% MARKOWITZ ANALYTICAL FRONTIER
-
-
 def markowitz_constants(
     mean_ret: np.ndarray, cov_matrix: np.ndarray
 ) -> Tuple[float, float, float]:
