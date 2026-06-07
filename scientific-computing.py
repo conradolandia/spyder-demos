@@ -36,7 +36,6 @@ def build_laplacian(n: int, dx: float):
 
     main = -2 * np.ones(n)
     off = np.ones(n - 1)
-
     lap = sparse.diags([off, main, off], [-1, 0, 1])
 
     return lap / dx**2
