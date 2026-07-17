@@ -11,7 +11,6 @@ from scipy import fft
 from scipy import optimize
 from typing import Dict
 
-
 # %% GRID GENERATION
 
 

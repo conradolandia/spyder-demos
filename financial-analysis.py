@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import numpy        as np
-import yfinance     as yf
+import numpy as np
+import yfinance as yf
 from scipy.optimize import minimize
-from typing         import Tuple, Dict
+from typing import Tuple, Dict
 
 
 # %% SYNTHETIC DATA
@@ -32,9 +32,7 @@ def generate_synthetic_prices(
 
 
 def download_prices(
-    symbols: list[str],
-    start: str = "2018-01-01",
-    testing: bool = False
+    symbols: list[str], start: str = "2018-01-01", testing: bool = False
 ) -> np.ndarray:
     """
     Download prices using yfinance.
@@ -123,10 +121,12 @@ def random_weights(n_assets: int) -> np.ndarray:
     w /= w.sum()
     return w
 
+
 def generate_random_portfolios(n_sim: int, n_assets: int) -> np.ndarray:
     weights = np.random.random((n_sim, n_assets))
     weights /= weights.sum(axis=1)[:, None]
     return weights
+
 
 # %% MONTE CARLO
 def monte_carlo_portfolios(
@@ -137,6 +137,7 @@ def monte_carlo_portfolios(
     vol = np.sqrt(var)
     sharpe = returns / vol
     return returns, vol, sharpe
+
 
 # %% OPTIMIZATION
 def maximize_sharpe(
@@ -213,7 +214,7 @@ def efficient_frontier_analytical(
 
 def run_example() -> Dict[str, np.ndarray]:
     symbols = ["AAPL", "MSFT", "GOOG", "AMZN", "META"]
-    prices = download_prices(symbols)
+    prices = download_prices(symbols, "2018-01-01", True)
     returns = compute_log_returns(prices)
     mu = mean_returns(returns)
     cov = covariance_matrix(returns)

@@ -4,7 +4,7 @@ save_data_on_exit = True
 save_history = True
 save_non_project_files = False
 project_type = 'empty-project-type'
-recent_files = ['test_science.py', 'variable_types.py', 'scientific-computing.py', 'plot_example.py', 'test_polars.py', 'financial-analysis.py']
+recent_files = ['test_science.py', 'variable_types.py', 'scientific-computing.py', 'test_polars.py', 'financial-analysis.py', 'plot_example.py', 'flight_operations.py']
 
 [main]
 version = 0.2.0
